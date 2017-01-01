@@ -89,5 +89,13 @@ class GroupsController < ApplicationController
   def group_params
     params.require(:group).permit(:title, :description)
   end
+end
+
+class Account::GroupsController < ApplicationController
+  before_action :authenticate_user!
+
+  def index
+    @groups = current_user.participated_groups
+  end
 
 end
